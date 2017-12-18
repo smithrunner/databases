@@ -1,0 +1,71 @@
+1. string, integer, string, float, float
+
+2. A database would be used when you need to save information after an application
+has been closed. For example, you can post something to Facebook on your computer,
+log out, open up facebook on your phone and boom! there is your post. Your post was
+saved to a database so it could be accessed later. A text file is used when your
+just need something written out and saved. There could be instructions for humans
+saved in a text file, but not for computers.
+
+3. You tell SQL what to do, not how to do it. I can tell SQL, "go get this info"
+and SQL will get that info however it does it. If I tried to do the same thing in
+Ruby, I would have to tell Ruby step by step how to go grab something.
+
+4. Databases store information into tables made up of rows, columns and values.
+These databases can be accessed through the language SQL. The database can be accessed
+from multiple places, which is why the data is stored in 1 location.
+
+5.
+A table contains rows, column and values
+Row: a collection of different data elements for the same item. Example: a row
+would contain userid, name, email and date for a single element.
+Column: all of the X-data element for every item. Example: a column would contain
+the email for every item in the table.
+Value: the actual data contained in a row/column element. Example: an email value of
+'smithrunner@live.com'
+
+6. integer, float, string
+
+7.   SELECT date, amount
+     FROM payments;
+     ---------------->
+date	    amount
+5/1/2016	1500.00
+5/10/2016	37.00
+5/15/2016	124.93
+5/23/2016	54.72
+     ----------------->
+     SELECT amount
+     FROM payments
+     WHERE amount > 500;
+     ----------------->
+amount
+1500.00
+     ------------------>
+     SELECT *
+     FROM payments
+     WHERE payee = "Mega Foods";
+     ------------------->
+date	    payee	      amount	memo
+5/15/2016	Mega Foods	124.93	Groceries
+
+8.  SELECT email, signup
+    FROM users
+    WHERE name = "DeAndre Data"
+    --------------------------->
+email	            signup
+datad@comcast.net	2008-01-20
+    --------------------------->
+    SELECT userid
+    FROM users
+    WHERE email = "aleesia.algorithm@uw.edu"
+    --------------------------->
+userid
+1
+    --------------------------->
+    SELECT *
+    FROM users
+    WHERE userid = 4
+    --------------------------->
+userid	name	          email	            signup
+4	      Brandy Boolean	bboolean@nasa.gov	1999-10-15
