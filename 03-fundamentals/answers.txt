@@ -1,0 +1,99 @@
+1. Adding: INSERT INTO table_name (column titles) VALUES data;
+   Updating: UPDATE table_name SET column_title = data;
+   Deleting: DROP TABLE table_name;
+   Deleting: ALTER TABLE table_name DROP COLUMN column;
+
+2. The structure for each command follows a basic pattern. The first word/phrase
+is telling SQL what we want to do - insert something, update something or drop
+something. Then we tell SQL which table we want to do this to. Then we either specify
+the data to add/update/drop, depending on the command we are doing.
+
+3. decimal = 0.1, 0.2, 0.33 ....
+   character = q,w,e,r,t.....
+   date = 2017,12,18....
+
+4.
+  First and Last name: text
+  RSVP?              : boolean
+  Number of guests   : integer
+  Number of meals    : integer
+
+  CREATE TABLE wedding (
+    name text,
+    rsvp boolean,
+    guests integer,
+    meals integer
+  );
+
+  ALTER TABLE wedding ADD COLUMN thank_you boolean;
+
+  ALTER TABLE wedding DROP COLUMN meals;
+
+  ALTER TABLE wedding ADD COLUMN table_number int;
+
+  DROP TABLE wedding;
+
+5.
+  CREATE TABLE library (
+    isbn int,
+    title text,
+    author text,
+    genre text,
+    published date,
+    copies int,
+    aval_copies int
+  );
+
+  INSERT INTO library (isbn, title, author, genre, published, copies, aval_copies)
+  VALUES
+  (1853260088, 'Moby Dick', 'Herman Melville', 'fiction', 1851, 5, 5),
+  (1451673310, 'Fahrenheit 451', 'Ray Bradbury', 'fiction', 1953, 10, 10),
+  (0140053204, 'Travels with Charley', 'John Steinbeck', 'non-fiction', 1980, 3, 3);
+
+  UPDATE library SET aval_copies = 2 WHERE isbn=0140053204;
+
+  DELETE FROM library WHERE isbn=1451673310;
+
+6.
+  CREATE TABLE spacecraft (
+    id int,
+    name text,
+    year int,
+    country text,
+    description text,
+    orbiting text,
+    operating boolean,
+    miles int
+  );
+
+  INSERT INTO spacecraft (id, name, year, country, description, obriting, operating, miles)
+  VALUES
+  (1, 'ISS', 2000, 'USA', "habitable artificial satellite, in low Earth orbit", 'earth', true, 254),
+  (2, 'Molniya', 1964, 'Russia', 'military communication satellites', 'earth', false, 400),
+  (3, 'Aqua', 2002, 'USA', 'research satellite in orbit around the Earth, studying the precipitation, evaporation, and cycling of water', 'earth', false, 437);
+
+  DELETE FROM spacecraft WHERE id=3;
+
+  UPDATE spacecraft SET operating = false WHERE id = 1;
+
+7.
+  CREATE TABLE email (
+    id int,
+    subject text,
+    sender text,
+    add_recip text,
+    body text,
+    timestamp timestamp,
+    read boolean,
+    email_id int
+  );
+
+  INSERT INTO email (id, subject, sender, add_recip, body, timestamp, read, email_id)
+  VALUES
+  (1, 'job', 'jobs@job.com', 'none', 'you've been hired!', 2017/12/18, true, 234),
+  (2, 'other', 'other@other.com', 'none', 'that other thing!', 2017/12/18, false, 643),
+  (3, 'thing', 'thing@thing.com', 'none', 'that thing!', 2017/12/18, true, 34);
+
+  DELETE FROM email WHERE id = 1;
+
+  UPDATE email SET read = false WHERE id = 3;
