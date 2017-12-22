@@ -1,0 +1,79 @@
+1. SELECT column1
+   FROM table_name
+   WHERE year > 2000
+   
+2.
+"Select column from table where conditional"
+S.C.F.T.W.C.
+"southern california fires, totally widespread chaos"
+
+3. 
+SELECT name, gender, age FROM dogs
+WHERE breed LIKE '%labrador%';
+
+SELECT id FROM dogs
+WHERE age < 1;
+
+SELECT name, age FROM dogs
+WHERE gender = 'F'
+AND weight > 35;
+
+SELECT * FROM dogs
+WHERE breed NOT LIKE '%Shepherd%'
+AND breed NOT LIKE '%shepherd%';
+
+SELECT id, age, weight, breed FROM dogs
+WHERE weight > 60
+OR breed = 'Great Danes';
+
+4.
+
+name	adoption_date
+Mushi	2016-03-22
+Seashell	
+Azul	2016-04-17
+Victoire2016-09-01
+Nala
+
+
+name	age
+Mushi		1
+Seashell	7
+Azul		3
+Victoire	7
+Nala		1
+
+5.
+SELECT * FROM cats;
+
+SELECT * FROM cats
+WHERE age = 1 OR age = 7;
+
+SELECT name FROM cats;
+
+6.
+<, something less than something
+>, something greater than something
+<=, something less than or equal to something
+>=, something greather than or equal to something
+!=, something not equal to something
+=, something equal to something
+
+7.
+name
+Seashell
+Nala
+
+name
+Mushi
+Seashell
+Victoire
+Nala
+
+id
+Azul
+Victoire
+
+
+
+
