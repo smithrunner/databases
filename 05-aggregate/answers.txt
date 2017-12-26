@@ -1,0 +1,73 @@
+1.
+MIN - what's the smallest value in this column?
+MAX - what's the biggest value in this column?
+SUM - what is the total count of values in this column?
+AVG - what is the average value in this column?
+COUNT - how many values are in this column?
+
+2. 
+SELECT SUM(amount) FROM donations
+
+SELECT * FROM donations
+ORDER BY donor;
+
+SELECT AVG(amount) as average_donations, donor FROM donations
+GROUP BY donor;
+
+SELECT * FROM donations
+WHERE amount > 100;
+
+SELECT MAX(amount) FROM donations;
+
+SELECT MIN(amount) FROM donations;
+
+3. Using "group by"
+
+4. You need to determine the 5th slowest time in a list of race results. 
+
+5. Since you are limiting your results to a certain amount, you need to make sure
+the results are in the appropriate order to limit them by.
+
+6. WHERE filters before an aggregation, HAVING filters after the aggregation.
+
+7. Correct the following SELECT statement:
+
+ SELECT id, SUM (amount)
+ FROM payment
+ WHERE amount > 200;
+
+8.Write queries to retrieve the following information.
+-From the cats table, list all cats organized by intake date
+    
+    SELECT * FROM cats
+    GROUP BY intake_date;
+    
+-Given an adoptions table with the columns id, date, adopter, cat, and fee, 
+determine the 5 most recent adoptions to be featured as “Happy Tails” on social media.
+    
+    SELECT * FROM adoptions
+    ORDER BY date
+    LIMIT 5;
+    
+-There is a potential adopter looking for an adult female cat. In the most efficient 
+way possible, from the Cats table, list all female cats 2 or more years old.
+
+    SELECT * FROM cats
+    WHERE gender = 'F'
+    AND age > 2;
+    
+-From the donations table (described in problem #2), find the top 5 donors with the
+highest cumulative donation amounts to be honored as “Platinum Donors”.
+
+    SELECT SUM(amount) as salary_sum FROM donations
+    GROUP BY donor
+    LIMIT 5;
+    
+-From the donations table (described in problem #2), find donors 6-15 with the 
+next highest cumulative donation amounts to be honored as “Gold Donors”.
+
+    SELECT SUM(amount) as salary_sum FROM donations
+    GROUP BY donor
+    LIMIT 10 OFFSET 5;
+    
+    
