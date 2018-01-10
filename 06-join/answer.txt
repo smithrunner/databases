@@ -1,7 +1,25 @@
 1.How do you find data that is held in two separate data tables?
+    You can use join statements with different qualifiers to select
+    the pieces of information you want from each table and get a combined
+    table as a result.
 
-2.Explain, in your own words, the difference between a CROSS JOIN, INNER JOIN, 
+2.Explain, in your own words, the difference between a CROSS JOIN, INNER JOIN,
 LEFT OUTER JOIN, RIGHT OUTER JOIN, and FULL OUTER JOIN. Give a real world example for each.
+
+    CROSS JOIN- in the new table created, there will be column for every possible
+    combination of column names from table1 and table2.
+
+    INNER JOIN- the joined table is full of rows that correspond to a conditional statement that
+    compares one each row of table 1, to all rows of table2.
+
+    LEFT OUTER JOIN- You first do a INNER JOIN. Then a row is added for each row of table 1
+    where nothing matched the conditional statement.
+
+    RIGHT OUTER JOIN- You first do a INNER JOIN. Then a row is added for each row of table 2
+    where nothing matched the conditional statement.
+
+    FULL OUTER JOIN- First an INNER JOIN. Then a row is added for each row of table 1 that had no
+    matches. Then a new row is added for each row of table 2 that had no matches.
 
 3.Define primary key and foreign key. Give a real world example for each.
 
@@ -10,46 +28,77 @@ LEFT OUTER JOIN, RIGHT OUTER JOIN, and FULL OUTER JOIN. Give a real world exampl
     jersey.
     A foreign key is how you link two tables together. Using the football example, each
     player on that team could have a foreign key relating to a table of all the football
-    teams. So each player would be linked via a foriegn key to their appropriate team.
-    
+    teams. So each player would be linked via a foreign key to their appropriate team.
+
 4.Define aliasing.
-    
-    Defining an appreviation to represent a table. Let's say you have a table named
+
+    Defining an abbreviation to represent a table. Let's say you have a table named
     "dogs". With aliasing, you can tell SQL that "d" is now short for "dogs".
 
 5.Change this query so that you are using aliasing:
-    SELECT professor.name, compensation.salary, compensation.vacation_days 
+    SELECT professor.name, compensation.salary, compensation.vacation_days
     FROM professor AS p
     JOIN compensation AS c
     ON p.id = c.professor_id;
-    
+
 6.Why would you use a NATURAL JOIN? Give a real world example.
 
-    If you are going to use each column name from both tables via the USING method,
-    NATURAL JOIN is a short hand to do that for you. 
+    If you are going to use the column names that appear in both tables only via the USING method,
+    NATURAL JOIN is a short hand to do that for you.
 
 7.Build an Employees table and a Shifts table with appropriate primary and foreign keys. Then, write queries to find the following information:
     List all employees and all shifts.
     Create a list of all possible schedules.
-    
-8.Given the Dogs table (described below), the Adoptions table (described below), the Adopters table (which has the columns id, 
-first_name, last_name, address, and phone number), and the Volunteers table (which has the columns id, 
+
+    CREATE TABLE employees (
+        employee_id integer,
+        name text
+    );
+
+    CREATE TABLE shifts (
+        id integer,
+        time text,
+        day text
+    );
+
+    SELECT * FROM employees NATURAL JOIN shifts;
+
+    SELECT * FROM employees CROSS JOIN shifts;
+
+
+
+8.Given the Dogs table (described below), the Adoptions table (described below), the Adopters table (which has the columns id,
+first_name, last_name, address, and phone number), and the Volunteers table (which has the columns id,
 name, address, phone_number, available_to_foster, and foster_id), please write queries to retrieve the following information.
     Create a list of all volunteers. If the volunteer is fostering a dog, include each dog as well.
+
+        SELECT * FROM volunteers
+        LEFT JOIN adopters
+        ON volunteers.id = adopters.id;
+
     List the adopter’s name and the pet’s name for each animal adopted within the past month to be displayed as a ‘Happy Tail’ on social media.
+
+        SELECT name, pet_name FROM Adoptions
+        WHERE date > 12/9/2017;
+
     Create a list of adopters who have not yet chosen a dog to adopt and generate all possible combinations of adopters and available dogs.
+
+        SELECT * FROM adopters
+        WHERE dog = null
+        
+
     Display a list of all cats and all dogs who have not been adopted.
-    Create a list of volunteers who are available to foster. If they currently are fostering a dog, include the dog. 
+    Create a list of volunteers who are available to foster. If they currently are fostering a dog, include the dog.
     Also include all dogs who are not currently in foster homes.
-    
-9.Write a query to find the name of the person who adopted Seashell given the tables Cats (depicted below), 
+
+9.Write a query to find the name of the person who adopted Seashell given the tables Cats (depicted below),
 Adoptions (depicted below), and Adopters which has columns for id, address, phone number, and name.
     Dogs table has the columns id, name, gender, age, weight, intake_date, breed, and in_foster.
     NOTE: Shelter dogs’ breeds are typically guessed by the intake team, so the column may have multiple words. I.E. labrador collie mix
 
     Cats table has the columns id, name, gender, age, intake_date, adoption_date
     Adoptions table has the columns id, adopter, cat, dog, fee, date
-10.Given the tables Books (isbn, title, author), Transactions(id, checked_out_date, checked_in_date, user_id, isbn), 
+10.Given the tables Books (isbn, title, author), Transactions(id, checked_out_date, checked_in_date, user_id, isbn),
 Holds(id, isbn, user_id, rank, date), and Patrons(id, name, fine_amount), write queries to find the following information:
     To discern if the library should buy more copies of a given book, please provide the names and position, in order, of all of the patrons waiting in line for Harry Potter and the Sorcerer’s Stone.
     Make a list of all book titles and denote whether or not a copy of that book is checked out.
