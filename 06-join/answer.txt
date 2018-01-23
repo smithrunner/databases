@@ -84,12 +84,19 @@ name, address, phone_number, available_to_foster, and foster_id), please write q
     Create a list of adopters who have not yet chosen a dog to adopt and generate all possible combinations of adopters and available dogs.
 
         SELECT * FROM adopters
-        WHERE dog = null
-        
+        WHERE dog = null;
+
 
     Display a list of all cats and all dogs who have not been adopted.
+
+        SELECT name FROM dogs
+        WHERE adopter = false;
+
     Create a list of volunteers who are available to foster. If they currently are fostering a dog, include the dog.
     Also include all dogs who are not currently in foster homes.
+
+        SELECT volunteer_name FROM adopters
+        RIGHT JOIN dog_name ON adopters.name = dog_name.owner;
 
 9.Write a query to find the name of the person who adopted Seashell given the tables Cats (depicted below),
 Adoptions (depicted below), and Adopters which has columns for id, address, phone number, and name.
@@ -98,10 +105,44 @@ Adoptions (depicted below), and Adopters which has columns for id, address, phon
 
     Cats table has the columns id, name, gender, age, intake_date, adoption_date
     Adoptions table has the columns id, adopter, cat, dog, fee, date
+
+    SELECT adopter FROM Adoptions
+    INNER JOIN dog ON adoptions.dog = dogs.name
+    WHERE dogs.name = Seashell;
+
+
+
 10.Given the tables Books (isbn, title, author), Transactions(id, checked_out_date, checked_in_date, user_id, isbn),
 Holds(id, isbn, user_id, rank, date), and Patrons(id, name, fine_amount), write queries to find the following information:
-    To discern if the library should buy more copies of a given book, please provide the names and position, in order, of all of the patrons waiting in line for Harry Potter and the Sorcerer’s Stone.
+    To discern if the library should buy more copies of a given book, please provide the names and position,
+    in order, of all of the patrons waiting in line for Harry Potter and the Sorcerer’s Stone.
+
+        SELECT user_id, rank FROM Holds
+        INNER JOIN patrons ON holds.user_id = patrons.id
+        ORDER BY holds.rank;
+
     Make a list of all book titles and denote whether or not a copy of that book is checked out.
-    In an effort to learn which books take longer to read, the librarians would like you to create a list of total checked out time by book name in the past month.
+
+        SELECT title FROM books
+        RIGHT JOIN Transactions.checked_in_date
+        ON Transactions.isbn = books.isbn;
+
+    In an effort to learn which books take longer to read, the librarians would like you to create a list of
+    total checked out time by book name in the past month.
+
+        SELECT title FROM Books
+        INNER JOIN (Transactions.checked_out_date - Transactions.checked_in_date)
+        ON Transactions.isbn = books.isbn
+        WHERE Transactions.checked_out_date > 12/22/2017;
+
+
     In order to learn which items should be retired, make a list of all books that have not been checked out in the past 5 years.
+
+      SELECT isbn FROM Transactions
+      WHERE checked_out_date < 1/22/2013;
+
     List all of the library patrons. If they have one or more books checked out, correspond the books to the patrons.
+
+      SELECT * FROM Patrons
+      LEFT OUTER JOIN Transactions.isbn
+      ON Transactions.user_id = patrons.id;
