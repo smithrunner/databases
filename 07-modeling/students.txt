@@ -1,0 +1,8 @@
+2. Data Model for students/classes.
+
+The drawn model for this problem is saved in this folder as "student_reg.png",
+it was made using quickdatabasediagrams.com.
+
+The assumptions made are that the only information needed from students are a
+name and email. And that a class only needs a capacity, professor, department and
+name listed.
