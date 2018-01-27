@@ -1,0 +1,57 @@
+1. In your own words, explain the benefits of normalization.
+Include a real-world scenario where normalization is necessary.
+
+--> Normalization is basically the process of standardizing all of your databases
+so that they are more efficient, clean (no redudant data), organized and follow
+a standard format. In an ideal world, a normalized database will be faster and more
+efficient.
+
+--> If you were making a database of car types, normalization would help you. You would
+have a table of car manufacturers. Then for each manufacturer, you would have a table of
+each model car they produce. Each model would have a table of stats/whatever you want to record about
+that particular car.
+
+2. List and explain the different normal forms and how they relate to one another,
+with regard to your real-world scenario in the first question.
+
+--> 1NF. A column cannot contain multiple values. In my first database of manufacturers,
+each manufacturerID is only related to 1 maker. EX:
+
+ID | manufacturer | make
+---|--------------|-----
+01 | ford         | fiesta
+01 | ford         | focus
+02 | subaru       | outback
+
+
+--> 2NF. First, the table must be 1NF compliant. Then all non-key attributes cannot be dependent on a subset of the primary key
+
+ID | manufacturer
+---|-------------
+01 | ford
+02 | subaru
+
+manufacturer | make
+-------------|-----
+ford         | fiesta
+ford         | focus
+subaru       | outback
+
+
+--> 3NF. First, everything needs to be 2NF compliant. Then all transitive functional dependencies of non-prime attributes must not exist.
+
+--> BCNF
+
+
+
+3. The student_records table below shows the students and their grades in different subjects.
+The table is already in first normal form (1NF). Convert this table to the third normal form (3NF)
+using the techniques you learned in this checkpoint.
+
+4. In your own words, explain the potential disadvantages of normalizing the data above.
+What are its trade-offs? Discuss this with your mentor.
+
+5. Looking at the tables you have normalized. If you need to denormalize to improve query performance or speed up reporting,
+how would you carry out denormalization for this database design? Discuss potential strategies with your mentor.
+
+6. Discuss the trade-offs between data normalization and denormalization in this scenario with your mentor.
